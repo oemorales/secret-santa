@@ -33,13 +33,13 @@ A web application for managing "Secret Santa"-like gift exchange activities amon
 ## Technical Architecture
 
 ### Frontend
-- React 18+ with TypeScript
+- React 19+ with TypeScript
 - Vite build tool
 - Tailwind CSS styling
 - React Router for navigation
 
 ### Backend
-- Node.js 20+ with Express.js
+- Node.js 26.9.0+ with Express.js
 - TypeScript
 - JWT authentication
 - Prisma ORM
@@ -53,7 +53,8 @@ A web application for managing "Secret Santa"-like gift exchange activities amon
 secret-santa/
 ├── packages/
 │   ├── frontend/      # React application
-│   └── backend/       # Express.js API
+│   ├── backend/       # Express.js API
+│   └── shared/        # Shared types, schemas, and constants
 ├── specs/             # Project specifications
 │   ├── tech-stack.md  # Technology decisions
 │   ├── roadmap.md     # Development milestones
@@ -66,7 +67,7 @@ secret-santa/
 ## Getting Started
 
 ### Prerequisites
-- Node.js 20+
+- Node.js 26.9.0+
 - Docker and Docker Compose
 - PostgreSQL (or use Docker)
 
