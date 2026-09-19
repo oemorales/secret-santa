@@ -1,11 +1,12 @@
 # Roadmap - Secret Santa Application
 
-## Milestone 1: Project Foundation
-- Set up monorepo structure with npm workspaces
-- Initialize packages/frontend and packages/backend directories
-- Configure shared TypeScript, ESLint, Prettier at root level
-- Set up Docker Compose for local development
-- Create basic database schema with Prisma
+## Milestone 1: Project Foundation ✅
+- [x] Set up monorepo structure with npm workspaces
+- [x] Initialize packages/frontend, packages/backend, and packages/shared directories
+- [x] Configure shared TypeScript, ESLint, Prettier at root level
+- [x] Set up Docker Compose for local development
+- [x] Create basic database schema with Prisma
+- [x] Initialize Git repository
 
 ## Milestone 2: User Authentication System
 - Implement user registration with email/password

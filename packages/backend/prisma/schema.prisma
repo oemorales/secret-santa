@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String                 @id @default(uuid())
+  email              String                 @unique
+  password_hash      String
+  username           String
+  profile_picture_url String?
+  area               String?
+  created_at         DateTime               @default(now())
+  updated_at         DateTime               @updatedAt
+  organized_exchanges GiftExchange[]        @relation("Organizer")
+  participations     GiftExchangeParticipant[]
+  sent_draws         DrawResult[]           @relation("Sender")
+  received_draws     DrawResult[]           @relation("Receiver")
+  wishlist_items     WishlistItem[]
+
+  @@map("users")
+}
+
+model GiftExchange {
+  id             String                   @id @default(uuid())
+  organizer_id   String
+  name           String
+  description    String?
+  event_date     DateTime
+  status         String                   @default("draft")
+  created_at     DateTime                 @default(now())
+  updated_at     DateTime                 @updatedAt
+  organizer      User                     @relation("Organizer", fields: [organizer_id], references: [id])
+  participants   GiftExchangeParticipant[]
+  draw_rules     DrawRule[]
+  draw_results   DrawResult[]
+  wishlist_items WishlistItem[]
+
+  @@map("gift_exchanges")
+}
+
+model GiftExchangeParticipant {
+  id               String        @id @default(uuid())
+  gift_exchange_id String
+  user_id          String
+  display_name     String
+  joined_at        DateTime      @default(now())
+  gift_exchange    GiftExchange  @relation(fields: [gift_exchange_id], references: [id])
+  user             User          @relation(fields: [user_id], references: [id])
+
+  @@unique([gift_exchange_id, user_id])
+  @@map("gift_exchange_participants")
+}
+
+model DrawRule {
+  id                    String          @id @default(uuid())
+  gift_exchange_id      String
+  allow_multiple_groups Boolean         @default(false)
+  exclude_same_area     Boolean         @default(false)
+  exclude_same_subgroup Boolean         @default(false)
+  created_at            DateTime        @default(now())
+  gift_exchange         GiftExchange    @relation(fields: [gift_exchange_id], references: [id])
+  exclusions            DrawExclusion[]
+
+  @@map("draw_rules")
+}
+
+model DrawExclusion {
+  id                  String    @id @default(uuid())
+  draw_rule_id        String
+  excluded_user_id_1  String?
+  excluded_user_id_2  String?
+  excluded_subgroup_1 String?
+  excluded_subgroup_2 String?
+  description         String?
+  draw_rule           DrawRule  @relation(fields: [draw_rule_id], references: [id])
+
+  @@map("draw_exclusions")
+}
+
+model DrawResult {
+  id               String      @id @default(uuid())
+  gift_exchange_id String
+  sender_id        String
+  receiver_id      String
+  drawn_at         DateTime    @default(now())
+  visible_after    DateTime
+  gift_exchange    GiftExchange @relation(fields: [gift_exchange_id], references: [id])
+  sender           User        @relation("Sender", fields: [sender_id], references: [id])
+  receiver         User        @relation("Receiver", fields: [receiver_id], references: [id])
+
+  @@map("draw_results")
+}
+
+model WishlistItem {
+  id               String        @id @default(uuid())
+  gift_exchange_id String
+  user_id          String
+  item_name        String
+  description      String?
+  priority         Int?
+  link             String?
+  created_at       DateTime      @default(now())
+  gift_exchange    GiftExchange  @relation(fields: [gift_exchange_id], references: [id])
+  user             User          @relation(fields: [user_id], references: [id])
+
+  @@map("wishlist_items")
+}

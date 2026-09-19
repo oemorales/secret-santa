@@ -1,5 +1,22 @@
 # Implementation Plan - Secret Santa Application
 
+## Status
+
+| Milestone | Status |
+|-----------|--------|
+| 1. Project Foundation | ✅ Complete |
+| 2. User Authentication System | ⏳ Pending |
+| 3. User Profile Management | ⏳ Pending |
+| 4. Gift Exchange Creation | ⏳ Pending |
+| 5. Gift Exchange Participation | ⏳ Pending |
+| 6. Draw System Core | ⏳ Pending |
+| 7. Draw Execution & Visibility | ⏳ Pending |
+| 8. Wishlist System | ⏳ Pending |
+| 9. Gift Exchange Lifecycle | ⏳ Pending |
+| 10. Admin Dashboard | ⏳ Pending |
+| 11. Polish & Optimization | ⏳ Pending |
+| 12. Deployment & CI/CD | ⏳ Pending |
+
 ## Project Overview
 A web application for managing "Secret Santa"-like gift exchange activities among users. The platform handles user management, gift exchange creation, draw execution, and wishlist management with role-based access control.
 
@@ -177,10 +194,11 @@ A web application for managing "Secret Santa"-like gift exchange activities amon
 
 ### Local Development
 1. Clone the repository
-2. Run `docker-compose up` for database
-3. Run `npm install` at root to install all dependencies
-4. Run `npm run migrate` to run database migrations
-5. Run `npm run dev` to start both frontend and backend servers
+2. Run `docker-compose up -d` to start PostgreSQL
+3. Run `cp packages/backend/.env.example packages/backend/.env` to create environment file
+4. Run `npm install` at root to install all dependencies
+5. Run `npm run migrate` to run database migrations
+6. Run `npm run dev` to start both frontend and backend servers
 
 ### Testing Strategy
 
