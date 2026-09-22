@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import rateLimit from 'express-rate-limit';
+import authRoutes from './routes/auth.js';
+import { errorHandler } from './middleware/errorHandler.js';
 
 dotenv.config();
 
@@ -30,10 +32,15 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// API Routes placeholder
+// API Routes
+app.use('/api/auth', authRoutes);
+
 app.get('/api', (req, res) => {
   res.json({ message: 'Secret Santa API' });
 });
+
+// Error handling middleware
+app.use(errorHandler);
 
 // Start server
 async function main() {

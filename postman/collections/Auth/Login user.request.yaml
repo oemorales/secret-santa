@@ -1,0 +1,14 @@
+$kind: http-request
+description: ""
+url: localhost:3001/api/auth/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"sets@s.gt\",\r
+
+    \    \"password\": \"passoworldo\"\r
+
+    }"
+order: 1117422697719713

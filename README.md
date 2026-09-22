@@ -72,7 +72,7 @@ secret-santa/
 - PostgreSQL (or use Docker)
 
 ### Development Setup
-1. Clone the repository: `git clone [repo-url]`
+1. Clone the repository: `git clone https://github.com/oemorales/secret-santa`
 2. Navigate to project: `cd secret-santa`
 3. Run `docker-compose up -d` to start database
 4. Install dependencies: `npm install`

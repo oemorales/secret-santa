@@ -1,0 +1,14 @@
+$kind: http-request
+description: ""
+url: localhost:3001/api/auth/me
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"seta@s.gt\",\r
+
+    \    \"password\": \"passuorodokudasai\"\r
+
+    }"
+order: 2227427663388694
